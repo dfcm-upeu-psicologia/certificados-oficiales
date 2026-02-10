@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Repositorio Institucional de Certificados</title>
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #003366;
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 6px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1, h2 {
+      margin-top: 0;
+    }
+
+    .busqueda {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      width: 250px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #003366;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0055a5;
+    }
+
+    .tarjeta {
+      border: 1px solid #ddd;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-left: 5px solid #003366;
+      background-color: #fafafa;
+    }
+
+    .error {
+      color: #b00020;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+      margin: 40px 0 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Repositorio Institucional de Certificados</h1>
+  <p>Validación oficial de constancias y certificados</p>
+</header>
+
+<main>
+
+  <section class="busqueda">
+    <h2>Validación de Certificado</h2>
+    <p>Ingrese su DNI para verificar la validez de su certificado</p>
+
+    <input type="text" id="dniInput" placeholder="DNI">
+    <button onclick="buscarCertificado()">Validar</button>
+  </section>
+
+  <section id="resultado"></section>
+
+</main>
+
+<footer>
+  <p>
+    Este repositorio permite la verificación pública de certificados emitidos oficialmente.<br>
+    © 2026 – Unidad Académica / Programa de Formación
+  </p>
+</footer>
+
+<!-- BASE DE DATOS -->
+<script>
+const certificados = [
+  {
+    dni: "60909660",
+    nombre: "ABADO MAMANI CRISTHIAN ANGEL",
+    rol: "Asistente",
+    link: "https://upeuedupe-my.sharepoint.com/..."
+  },
+  {
+    dni: "60909660",
+    nombre: "ABADO MAMANI CRISTHIAN ANGEL",
+    rol: "Ponente",
+    link: "https://upeuedupe-my.sharepoint.com/..."
+  },
+  {
+    dni: "47548798",
+    nombre: "ACCARAPI HUMPIRI LUZ DELIA",
+    rol: "Asistente",
+    link: "https://upeuedupe-my.sharepoint.com/..."
+  }
+];
+</script>
+
+<!-- LÓGICA -->
+<script>
+function buscarCertificado() {
+  const dni = document.getElementById("dniInput").value.trim();
+  const resultado = document.getElementById("resultado");
+
+  resultado.innerHTML = "";
+
+  if (dni === "") {
+    resultado.innerHTML = "<p class='error'>Por favor, ingrese su DNI.</p>";
+    return;
+  }
+
+  const encontrados = certificados.filter(c => c.dni === dni);
+
+  if (encontrados.length === 0) {
+    resultado.innerHTML = "<p class='error'>No se encontró ningún certificado asociado al DNI ingresado.</p>";
+    return;
+  }
+
+  let html = "<h2>Resultado de la validación</h2>";
+
+  encontrados.forEach(c => {
+    html += `
+      <div class="tarjeta">
+        <p><strong>Nombre:</strong> ${c.nombre}</p>
+        <p><strong>Rol:</strong> ${c.rol}</p>
+        <p><strong>Estado:</strong> Certificado válido</p>
+        <a href="${c.link}" target="_blank">Ver certificado</a>
+      </div>
+    `;
+  });
+
+  resultado.innerHTML = html;
+}
+</script>
+
+</body>
+</html>
