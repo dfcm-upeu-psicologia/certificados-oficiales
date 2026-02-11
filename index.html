@@ -66,6 +66,18 @@
     button:hover {
       background-color: #0055a5;
     }
+    
+    .titulo-resultado{
+           text-align:center;
+      background:rgba(255,255,255,0.85);
+      padding:15px;
+      border-radius:8px;
+      margin-bottom:25px;
+      font-size:22px;
+      color:#003366;
+      font-weight:bold;
+      box-shadow:0 2px 6px rgba(0,0,0,0.15);
+    }
 
     .tarjeta{
       max-width:600px;
@@ -6230,8 +6242,8 @@ function buscarCertificado() {
     return;
   }
 
-  let html = "<h2>Resultado de la validación</h2>";
-
+  let html="<div class='titulo-resultado'>Resultado de la validación</div>";
+  
   encontrados.forEach(c => {
     html += `
       <div class="tarjeta">
